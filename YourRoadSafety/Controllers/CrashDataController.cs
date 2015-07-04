@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using YourRoadSafety.DTOs;
@@ -25,28 +24,9 @@ namespace YourRoadSafety.Controllers
             IQueryable<CrashData> crashes = _crashDataContext.Crashes;
             crashes = FilterGender(crashes, query.Gender);
             crashes = FilterAgeGroup(crashes, query.AgeGroup);
+            crashes = FilterVehicleType(crashes, query.VehicleType);
 
             return crashes;
-
-            //var fakeCrashData = new List<CrashDataDto>();
-
-            //fakeCrashData.Add(new CrashDataDto());
-
-            //fakeCrashData.Add(new CrashDataDto(-37.76008M, 144.83187M,
-            //    "Intersection	BRIMBANK	METROPOLITAN NORTH WEST REGION"));
-            //fakeCrashData.Add(new CrashDataDto(-37.85962M, 145.00686M,
-            //    "Intersection	STONNINGTON	METROPOLITAN SOUTH EAST REGION"));
-            //fakeCrashData.Add(new CrashDataDto(-37.90021M, 144.66336M,
-            //    "Non-Intersection	WYNDHAM	METROPOLITAN NORTH WEST REGION"));
-            //fakeCrashData.Add(new CrashDataDto(-37.88893M, 144.76104M,
-            //    "Non-Intersection	WYNDHAM	METROPOLITAN NORTH WEST REGION"));
-            //fakeCrashData.Add(new CrashDataDto(-37.72999M, 145.10734M,
-            //    "Non-Intersection	BANYULE	METROPOLITAN NORTH WEST REGION"));
-            //fakeCrashData.Add(new CrashDataDto(-37.98584M, 145.19256M,
-            //    "Non-Intersection	DANDENONG	METROPOLITAN SOUTH EAST REGION"));
-            //return fakeCrashData;
-
-
         }
 
         private IQueryable<CrashData> FilterGender(IQueryable<CrashData> crashes, Gender gender)
@@ -85,6 +65,31 @@ namespace YourRoadSafety.Controllers
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("ageGroup", ageGroup, null);
+            }
+
+            return crashes;
+        }
+
+        private IQueryable<CrashData> FilterVehicleType(IQueryable<CrashData> crashes, VehicleType vehicleType)
+        {
+            switch (vehicleType)
+            {
+                case VehicleType.Unknown:
+                    break;
+                case VehicleType.Car:
+                    crashes = crashes.Where(x => x.PassengerVehicleCount > 0);
+                    break;
+                case VehicleType.MotorBike:
+                    crashes = crashes.Where(x => x.MotorCycleCount > 0);
+                    break;
+                case VehicleType.Bicycle:
+                    crashes = crashes.Where(x => x.BicyclistCount > 0);
+                    break;
+                case VehicleType.Other:
+                    crashes = crashes.Where(x => x.PublicVehicleInvolved || x.HeavyVehicleCount > 0);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("vehicleType", vehicleType, null);
             }
 
             return crashes;

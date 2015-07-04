@@ -14,6 +14,11 @@ namespace YourRoadSafety.Models
             Property(x => x.YoungDriverCount).HasColumnName("YOUNG_DRIVER");
             Property(x => x.OldDriverCount).HasColumnName("OLD_DRIVER");
             Property(x => x.DriverCount).HasColumnName("DRIVER");
+            Property(x => x.HeavyVehicleCount).HasColumnName("HEAVYVEHICLE");
+            Property(x => x.PassengerVehicleCount).HasColumnName("PASSENGERVEHICLE"); 
+            Property(x => x.MotorCycleCount).HasColumnName("MOTORCYCLE");
+            Property(x => x.PublicVehicleInvolved).HasColumnName("PUBLICVEHICLE");
+            Property(x => x.BicyclistCount).HasColumnName("BICYCLIST");
         }
     }
 }

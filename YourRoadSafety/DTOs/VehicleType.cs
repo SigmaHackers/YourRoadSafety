@@ -5,6 +5,7 @@
         Unknown,
         Car,
         MotorBike,
-        Bicycle
+        Bicycle,
+        Other
     }
 }

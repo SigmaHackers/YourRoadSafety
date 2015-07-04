@@ -10,9 +10,37 @@
     <link href="../Content/Site.css" rel="stylesheet" />
 </head>
 <body ng-app="YourRoadSafety">
-    <div ng-controller="MainCtrl">
-        {{ points }}
-    </div>
+<div ng-controller="MainCtrl">
+    <div ng-if="erros">{{errors}}</div>
+
+    Gender:
+    <select ng-model="params.Gender" convert-to-number
+            ng-change="filterChanged()">
+        <option value="0"></option>
+        <option value="1">Male</option>
+        <option value="2">Female</option>
+    </select>
+
+    Age Group:
+    <select ng-model="params.AgeGroup" convert-to-number
+            ng-change="filterChanged()">
+        <option value="0"></option>
+        <option value="1">Young</option>
+        <option value="2">Middle Age</option>
+        <option value="3">Old</option>
+    </select>
+
+    Vehicle Type:
+    <select ng-model="params.VehicleType" convert-to-number
+            ng-change="filterChanged()">
+        <option value="0"></option>
+        <option value="1">Car</option>
+        <option value="2">Motor Bike</option>
+        <option value="3">Bicycle</option>
+        <option value="3">Other</option>
+    </select>
+
+</div>
     <div id="progress"><div id="progress-bar"></div></div>
     <div id="map"></div>
     <span>Mouse over a cluster to see the bounds of its children and click a cluster to zoom to those bounds</span>
