@@ -13,7 +13,7 @@
         $scope.isBusy = false;
         $scope.errors = null;
 
-        var apiRootPath = "//localhost:50129/api";
+        var apiRootPath = "/api";
 
         $scope.points = [];
 
@@ -25,6 +25,8 @@
                 params: $scope.params
             }).then(function (response) {
                 $scope.points = response.data;
+                if ($scope.map)
+                    $scope.map.remove();
                 updateMap();
                 $scope.isBusy = false;
 
@@ -35,7 +37,7 @@
 
         };
 
-        function initialiseMap() {
+        function updateMap() {
             var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 maxZoom: 18,
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, Points &copy 2012 LINZ'
@@ -48,7 +50,7 @@
             var progress = document.getElementById('progress');
             var progressBar = document.getElementById('progress-bar');
 
-            $scope.updateProgressBar = function(processed, total, elapsed, layersArray) {
+            $scope.updateProgressBar = function (processed, total, elapsed, layersArray) {
                 if (elapsed > 1000) {
                     // if it takes more than a second to load, display the progress bar:
                     progress.style.display = 'block';
@@ -60,11 +62,9 @@
                     progress.style.display = 'none';
                 }
             }
-        }
-
-        function updateMap() {
 
             var markers = L.markerClusterGroup({ chunkedLoading: true, chunkProgress: $scope.updateProgressBar });
+
             var markerList = [];
 
             for (var i = 0; i < $scope.points.length; i++) {
@@ -78,12 +78,10 @@
             //console.log('start clustering: ' + window.performance.now());
             markers.clearLayers();
             markers.addLayers(markerList);
-            //$scope.map.clearLayers();
             $scope.map.addLayer(markers);
 
         };
 
-        initialiseMap();
         $scope.filterChanged();
 
     }]);
