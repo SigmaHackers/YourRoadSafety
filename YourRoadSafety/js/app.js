@@ -21,14 +21,15 @@
 
             $scope.isBusy = true;
             $scope.errors = null;
-            $http.get(apiRootPath + '/CrashData').then(function (response) {
+            $http.get(apiRootPath + '/CrashData', {
+                params: $scope.params
+            }).then(function (response) {
                 $scope.points = response.data;
                 updateMap();
                 $scope.isBusy = false;
 
             }).catch(function (err) {
                 $scope.errors = err;
-                alert(err);
                 $scope.isBusy = false;
             });
 
@@ -77,12 +78,13 @@
             //console.log('start clustering: ' + window.performance.now());
             markers.clearLayers();
             markers.addLayers(markerList);
+            //$scope.map.clearLayers();
             $scope.map.addLayer(markers);
 
         };
 
         initialiseMap();
-        updateMap();
+        $scope.filterChanged();
 
     }]);
 

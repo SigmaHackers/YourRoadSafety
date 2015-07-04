@@ -16,7 +16,7 @@ namespace YourRoadSafety.Controllers
             _crashDataContext = new CrashDataContext();
         }
 
-        public IEnumerable<CrashData> GetAll([FromBody] CrashDataQuery query)
+        public IEnumerable<CrashData> GetAll([FromUri] CrashDataQuery query)
         {
             if(query == null)
                 query = new CrashDataQuery();
