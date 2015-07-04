@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Something</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/leaflet.css" rel="stylesheet" />
+    <link href="../Content/MarkerCluster.css" rel="stylesheet" />
+    <link href="../Content/MarkerCluster.Default.css" rel="stylesheet" />
+    <link href="../Content/Site.css" rel="stylesheet" />
+</head>
+<body ng-app="YourRoadSafety">
+    <div ng-controller="MainCtrl">
+        name == {{ name }}
+        points == {{ points }}
+    </div>
+    <div id="progress"><div id="progress-bar"></div></div>
+    <div id="map"></div>
+    <span>Mouse over a cluster to see the bounds of its children and click a cluster to zoom to those bounds</span>
+
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/angular-animate.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <script src="../Scripts/leaflet.markercluster.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>
