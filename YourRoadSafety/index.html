@@ -1,57 +1,250 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
+
 <head>
-    <title>Something</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="./Content/leaflet.css" rel="stylesheet" />
-    <link href="./Content/MarkerCluster.css" rel="stylesheet" />
-    <link href="./Content/MarkerCluster.Default.css" rel="stylesheet" />
-    <link href="./Content/Site.css" rel="stylesheet" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Your Road Safety</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="Content/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="Content/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body ng-app="YourRoadSafety">
-    <div ng-controller="MainCtrl">
-        <div ng-if="errors">{{errors}}</div>
-        <div ng-if="isBusy">Please wait...</div>
 
-        Gender:
-        <select ng-model="params.Gender" convert-to-number
-                ng-change="filterChanged()">
-            <option value="0"></option>
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-        </select>
+<body id="page-top" class="index" ng-app="YourRoadSafety">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">Your Road Safety</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Data</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">Road Safety Message</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#contact">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" style="zoom: 60%">
+                    <img class="img-responsive" src="img/profile.png" alt="">
+                    <div class="intro-text">
+                        <span class="name">Your road safety</span>
+                        <hr class="star-light">
+                        <span class="skills">A tool designed to educate young drivers in Geelong </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container" ng-controller="MainCtrl">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Data</h2>
+                    <hr class="star-primary">
+                    <p> The accident data for the last 5 years have been visualised using a map and a graph </p>
+                    <div class="row">
+                        <div class="col-lg-4 col-lg-offset-2" style="width: 360px">
 
-        Age Group:
-        <select ng-model="params.AgeGroup" convert-to-number
-                ng-change="filterChanged()">
-            <option value="0"></option>
-            <option value="1">Young</option>
-            <option value="2">Middle Age</option>
-            <option value="3">Old</option>
-        </select>
+                            <form role="form">
+                                <div ng-if="errors">{{errors}}</div>
 
-        Vehicle Type:
-        <select ng-model="params.VehicleType" convert-to-number
-                ng-change="filterChanged()">
-            <option value="0"></option>
-            <option value="1">Car</option>
-            <option value="2">Motor Bike</option>
-            <option value="3">Bicycle</option>
-            <option value="3">Other</option>
-        </select>
-        <div id="progress"><div id="progress-bar"></div></div>
-        <div id="map"></div>
-        <span>Mouse over a cluster to see the bounds of its children and click a cluster to zoom to those bounds</span>
+                                <div class="form-group">
+                                    <label for="sel1">Gender</label>
+                                    <select ng-model="params.Gender" convert-to-number
+                                            ng-change="filterChanged()" class="form-control" id="sel1">
+                                        <option value="0">All</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+                                    <label for="sel1" style="text-align:left">Age Group</label>
+                                    <select ng-model="params.AgeGroup" convert-to-number
+                                            ng-change="filterChanged()" class="form-control" id="sel2">
+                                        <option value="0">All</option>
+                                        <option value="1">18-25 years</option>
+                                        <option value="2">26-64 years</option>
+                                        <option value="3">65 years and over</option>
+                                    </select>
+                                    <label for="sel1">Vehicle Type</label>
+                                    <select ng-model="params.VehicleType" convert-to-number
+                                            ng-change="filterChanged()" class="form-control" id="sel3">
+                                        <option value="0">All</option>
+                                        <option value="1">Car</option>
+                                        <option value="2">Motorcycle</option>
+                                        <option value="3">Bicycle</option>
+                                        <option value="3">Other</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row">
+                        <div class="col-lg-4 ">
+                            <!--img class="loading" src="img/poi.gif"-->
+                            <div id="progress"><div id="progress-bar"></div></div>
+                            <div id="map"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Tutorial Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Road safety message</h2>
+                    <hr class="star-light">
+                </div>
 
+                <div class="col-lg-4 col-lg-offset-2" style="width: 360px">
+                    <div class="videoWrapper"><iframe width="360px" height="230px" src="https://www.youtube.com/embed/gutvPohxnAw?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+                <div class="col-lg-4" style="padding-left: 50px">
+                    <h4>External resources</h4>
+
+
+                    <p><a href="http://www.roadsafety.vic.gov.au/"> VicRoads road safety website</a></p>
+                    <p><a href="http://infrastructure.gov.au/roads/safety">Infrastructure road safety website</a></p>
+                    <p><a href="http://www.bitre.gov.au">Bureau of Infrastructure, Transport and Regional Economics</a></p>
+                    <p><a href="http://www.roadsafetyeducation.vic.gov.au">Victorian road safety education</a></p>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>About</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <p>Your Road Safety is a tool designed to help young drivers understand the importance of road safety.</p>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2">
+                    <p>It uses VicRoads data from the last 5 years to visualise reported accidents in Geelong area. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row" style="margin-bottom: 40px">
+                    <div class="col-lg-4 col-lg-offset-2">
+                        <h4>Sigma hackers</h4>
+                        <p>developed for Govhack Geelong 2015</p>
+                    </div>
+                    <div class="col-lg-4 col-lg-ofset-2">
+
+                        <ul class="list-inline">
+                            <li>
+                                <a href="mailto: sigma.govhack@gmail.com" class="btn-social btn-outline"><i class="fa fa-fw fa-envelope-o"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/SigmaHackers/YourRoadSafety" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; SIGMA HACKERS 2015
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
     </div>
 
     <script src="./Scripts/jquery-1.10.2.min.js"></script>
     <script src="./Scripts/bootstrap.min.js"></script>
     <script src="./Scripts/angular.min.js"></script>
     <script src="./Scripts/angular-animate.min.js"></script>
+    <script src="Scripts/freelancer.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
     <script src="./Scripts/leaflet.markercluster.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="Scripts/classie.js"></script>
+    <script src="Scripts/cbpAnimatedHeader.js"></script>
     <script src="./js/app.js"></script>
+
 </body>
+
 </html>

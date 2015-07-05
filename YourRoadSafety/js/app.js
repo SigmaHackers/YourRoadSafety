@@ -69,7 +69,7 @@
 
             for (var i = 0; i < $scope.points.length; i++) {
                 var a = $scope.points[i];
-                var title = a.Title;
+                var title = 'Accident date: ' + (a.AccidentDate ? a.AccidentDate : 'Unknown');
                 var marker = L.marker(L.latLng(a.Latitude, a.Longitude), { title: title });
                 marker.bindPopup(title);
                 markerList.push(marker);

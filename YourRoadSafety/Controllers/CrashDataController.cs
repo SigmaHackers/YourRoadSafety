@@ -29,6 +29,24 @@ namespace YourRoadSafety.Controllers
             return crashes;
         }
 
+        [Route("api/ChartData")]
+        public ChartDataDto GetChartData([FromUri] CrashDataQuery query)
+        {
+            if (query == null)
+                query = new CrashDataQuery();
+
+            IQueryable<CrashData> crashes = _crashDataContext.Crashes;
+            crashes = FilterGender(crashes, query.Gender);
+            crashes = FilterAgeGroup(crashes, query.AgeGroup);
+            crashes = FilterVehicleType(crashes, query.VehicleType);
+
+            var crashesList = crashes.ToList();
+
+            var chartData = new ChartDataDto();
+
+            return chartData;
+        }
+
         private IQueryable<CrashData> FilterGender(IQueryable<CrashData> crashes, Gender gender)
         {
             switch (gender)

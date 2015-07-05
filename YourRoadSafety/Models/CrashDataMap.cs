@@ -11,6 +11,7 @@ namespace YourRoadSafety.Models
             Property(x => x.Id).HasColumnName("OBJECTID");
             Property(x => x.Latitude).HasColumnName("LATITUDE");
             Property(x => x.Longitude).HasColumnName("LONGITUDE");
+            Property(x => x.AccidentDate).HasColumnName("ACCIDENT_DATE");
             Property(x => x.YoungDriverCount).HasColumnName("YOUNG_DRIVER");
             Property(x => x.OldDriverCount).HasColumnName("OLD_DRIVER");
             Property(x => x.DriverCount).HasColumnName("DRIVER");
