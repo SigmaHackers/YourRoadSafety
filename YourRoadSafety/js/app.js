@@ -45,10 +45,10 @@
             // somewhere in Geelong
             latlng = L.latLng(-38.1482595, 144.3629658);
 
-            $scope.map = L.map('map', { center: latlng, zoom: 13, layers: [tiles] });
+            $scope.map = L.map('map-leaf', { center: latlng, zoom: 13, layers: [tiles] });
 
-            var progress = document.getElementById('progress');
-            var progressBar = document.getElementById('progress-bar');
+            var progress = document.getElementById('progress-leaf');
+            var progressBar = document.getElementById('progress-bar-leaf');
 
             $scope.updateProgressBar = function (processed, total, elapsed, layersArray) {
                 if (elapsed > 1000) {

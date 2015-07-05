@@ -13,10 +13,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="Content/bootstrap.min.css" rel="stylesheet">
+    <link href="./Content/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="Content/freelancer.css" rel="stylesheet">
+    <link href="./Content/freelancer.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -29,6 +29,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <link href="./Content/leaflet.css" rel="stylesheet" />
+    <link href="./Content/MarkerCluster.css" rel="stylesheet" />
+    <link href="./Content/MarkerCluster.Default.css" rel="stylesheet" />
+    <link href="./Content/Site.css" rel="stylesheet" />
 
 </head>
 
@@ -89,12 +94,11 @@
                 <div class="col-lg-12 text-center">
                     <h2>Data</h2>
                     <hr class="star-primary">
-                    <p> The accident data for the last 5 years have been visualised using a map and a graph </p>
+                    <p> The accident data for the last 5 years have been visualised using a map</p>
                     <div class="row">
-                        <div class="col-lg-4 col-lg-offset-2" style="width: 360px">
+                        <div class="col-md-2 col-md-offset-2 text-left">
 
                             <form role="form">
-                                <div ng-if="errors">{{errors}}</div>
 
                                 <div class="form-group">
                                     <label for="sel1">Gender</label>
@@ -124,18 +128,23 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="row">
-                        <div class="col-lg-4 ">
+                        
+                        <div class="col-md-6">
+
                             <!--img class="loading" src="img/poi.gif"-->
-                            <div id="progress"><div id="progress-bar"></div></div>
-                            <div id="map"></div>
+                            <div id="progress-leaf">
+                                <div id="progress-bar-leaf"></div>
                             </div>
+                            <div id="map-leaf"></div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+        
     </section>
+   
     <!-- Tutorial Section -->
     <section class="success" id="about">
         <div class="container">
